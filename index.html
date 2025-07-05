@@ -190,24 +190,6 @@
             </div>
         </section>
 
-        <!-- New Section: Gemini API Integration - Idea Expander -->
-        <section id="gemini-idea-expander" class="mb-20 bg-[#FED766] bg-opacity-10 py-12 rounded-2xl">
-            <h2 class="text-3xl font-bold text-center mb-4">✨AIアイデア拡充アシスタント✨</h2>
-            <p class="text-center max-w-2xl mx-auto mb-10">君のアイデアをAIがさらに広げます！思いついたキーワードや短い文章を入力して、「アイデアを広げる」ボタンを押してみよう。</p>
-            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-2xl space-y-6">
-                <label for="ideaInput" class="block text-xl font-bold text-[#FF6B6B] mb-2">君のアイデアを入力！</label>
-                <textarea id="ideaInput" rows="6" class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#4ECDC4]" placeholder="例：タイムカプセルを埋める、卒業生を招いて座談会、生徒全員で歌を作る..."></textarea>
-                <button id="expandIdeaBtn" class="w-full bg-[#4ECDC4] text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg hover:bg-[#45B7D1] transition-colors flex items-center justify-center">
-                    ✨アイデアを広げる✨
-                </button>
-                <div id="loadingSpinnerExpander" class="loading-spinner"></div>
-                <div id="expandedIdeaOutput" class="mt-6 p-4 bg-gray-100 rounded-lg border border-gray-200 text-gray-700 whitespace-pre-wrap">
-                    AIが拡充したアイデアがここに表示されます。
-                </div>
-            </div>
-        </section>
-        <!-- End New Section -->
-
         <section id="support" class="mb-20">
             <h2 class="text-3xl font-bold text-center mb-4">心配しないで！大人が全力でサポートします</h2>
             <p class="text-center max-w-2xl mx-auto mb-10">「でも、企画を実現するのは大変そう…」大丈夫！皆さんが安心して挑戦できるよう、大人の実行委員会が「黒子」として、こんなサポートをします。</p>
@@ -445,55 +427,6 @@
                         max: 12
                     }
                 }
-            }
-        });
-
-        // Gemini API Integration Logic - Idea Expander
-        const ideaInput = document.getElementById('ideaInput');
-        const expandIdeaBtn = document.getElementById('expandIdeaBtn');
-        const loadingSpinnerExpander = document.getElementById('loadingSpinnerExpander');
-        const expandedIdeaOutput = document.getElementById('expandedIdeaOutput');
-
-        expandIdeaBtn.addEventListener('click', async () => {
-            const prompt = ideaInput.value.trim();
-            if (!prompt) {
-                expandedIdeaOutput.textContent = 'アイデアを入力してください。';
-                return;
-            }
-
-            loadingSpinnerExpander.style.display = 'block'; // Show spinner
-            expandedIdeaOutput.textContent = ''; // Clear previous output
-
-            try {
-                const chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: `あなたは中学校の周年行事の企画アシスタントです。生徒が以下のアイデアを考えています。このアイデアを周年行事の式典企画として、もっと具体的に、魅力的に、そして実現可能にするための具体的なヒントや多角的な視点を提供してください。80周年という節目にふさわしい、歴史や地域とのつながりも意識した提案を含めてください。
-生徒のアイデア: ${prompt}` }] });
-
-                const payload = { contents: chatHistory };
-                const apiKey = ""; 
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    expandedIdeaOutput.textContent = text;
-                } else {
-                    expandedIdeaOutput.textContent = 'アイデアの生成に失敗しました。もう一度お試しください。';
-                }
-            } catch (error) {
-                console.error('Error calling Gemini API:', error);
-                expandedIdeaOutput.textContent = 'アイデアの生成中にエラーが発生しました。ネットワーク接続を確認し、もう一度お試しください。';
-            } finally {
-                loadingSpinnerExpander.style.display = 'none'; // Hide spinner
             }
         });
     </script>
