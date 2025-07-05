@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【祝80周年】記念式典 企画アイデア大募集！</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            background-color: #F9F9F9;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 640px) {
+            .chart-container {
+                height: 300px;
+                max-height: 350px;
+            }
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4ECDC4;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            display: none; /* Hidden by default */
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="text-[#3A3A3A]">
+
+    <header class="bg-gradient-to-br from-[#4ECDC4] to-[#45B7D1] text-white text-center py-16 px-4">
+        <h1 class="text-3xl md:text-5xl font-extrabold mb-4 text-shadow">【祝 大宮東中学校創立80周年】</h1>
+        <p class="text-2xl md:text-4xl font-bold mb-6 text-shadow">みんなの手で、歴史に残る記念式典を創ろう！</p>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto">2026年秋開催予定の記念式典。主役は東中生だ！ステージ発表、映像制作、展示… どんなアイデアでも大歓迎。皆さんの「やりたい！」を形にするための、企画アイデアを大募集します！</p>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+
+        <section id="why-you" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-4">なぜ、東中生の皆さんに企画をお願いするのか？</h2>
+            <p class="text-center max-w-2xl mx-auto mb-10">この記念式典は、ただのお祝いではありません。皆さんが自らの手で創り上げることで、学校の歴史に新しい1ページを刻み、未来へ繋ぐ最高の機会になるからです。この挑戦を通じて、素晴らしい力が身につきます。</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-8 rounded-xl shadow-lg transform hover:scale-105 transition-transform">
+                    <div class="text-6xl mb-4 text-[#FF6B6B]">🚀</div>
+                    <h3 class="text-2xl font-bold mb-2">主体性</h3>
+                    <p>自ら考え、行動する力。君が学校の未来を創る主人公だ！</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg transform hover:scale-105 transition-transform">
+                    <div class="text-6xl mb-4 text-[#FED766]">🎨</div>
+                    <h3 class="text-2xl font-bold mb-2">創造性</h3>
+                    <p>誰も思いつかないアイデアで、みんなをアッと言わせよう！</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg transform hover:scale-105 transition-transform">
+                    <div class="text-6xl mb-4 text-[#4ECDC4]">🤝</div>
+                    <h3 class="text-2xl font-bold mb-2">協調性</h3>
+                    <p>仲間と力を合わせ、一つの目標を達成する感動を体験しよう！</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="proposal-format" class="mb-20 bg-[#45B7D1] bg-opacity-10 py-12 rounded-2xl">
+            <h2 class="text-3xl font-bold text-center mb-4">企画提案の「型」を知ろう！</h2>
+            <p class="text-center max-w-2xl mx-auto mb-10">皆さんの素晴らしいアイデアを、このフォーマットで教えてください。考えを整理することで、夢がぐっと現実に近づきます。</p>
+            <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-2xl space-y-6">
+                <div>
+                    <h3 class="text-xl font-bold text-[#FF6B6B]">企画タイトル</h3>
+                    <p class="text-gray-600">企画を表す、魅力的で分かりやすい名前をつけよう。</p>
+                </div>
+                <hr>
+                <div>
+                    <h3 class="text-xl font-bold text-[#FF6B6B]">企画のねらい・目的</h3>
+                    <p class="text-gray-600">なぜこの企画をしたい？周年式典で、何を一番伝えたい？</p>
+                </div>
+                <hr>
+                <div>
+                    <h3 class="text-xl font-bold text-[#FF6B6B]">企画内容（詳細）</h3>
+                    <p class="text-gray-600">いつ、どこで、誰が、何を、どのように行うのか、具体的に書こう。</p>
+                </div>
+                <hr>
+                <div>
+                    <h3 class="text-xl font-bold text-[#FF6B6B]">期待される効果</h3>
+                    <p class="text-gray-600">この企画が実現したら、どんな良いことが起こると思う？</p>
+                </div>
+                <hr>
+                <div>
+                    <h3 class="text-xl font-bold text-[#FF6B6B]">必要なサポート</h3>
+                    <p class="text-gray-600">実現のために、保護者や先生にどんな手伝いをお願いしたい？</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ideas" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-4">アイデアのヒント集：他校はこんなことやってる！</h2>
+            <p class="text-center max-w-2xl mx-auto mb-10">「何をしたらいいか分からない…」そんな君へ。他校の事例をヒントに、君たちの学校ならではのオリジナル企画を考えてみよう！特に「過去と未来のつながり」「地域との連携」がキーワードです。</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4 text-[#45B7D1]">① 学校の歴史と未来を繋ぐ企画</h3>
+                    <p class="mb-6">80年の歴史を学び、90周年に向かう未来へのメッセージを形にしよう。</p>
+                    <div class="chart-container">
+                        <canvas id="muralChart"></canvas>
+                    </div>
+                    <p class="text-center mt-2 text-gray-600">記念壁画制作のプロセス例。みんなで協力する作業が一番の思い出に。</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4 text-[#45B7D1]">② 生徒が主役の表現・発表企画</h3>
+                    <p class="mb-6">皆さんの得意なこと、情熱を注いでいることを、式典のステージで発表しよう！</p>
+                    <div class="chart-container">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                    <p class="text-center mt-2 text-gray-600">パフォーマンスの種類。君なら何で自分を表現する？</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4 text-[#FF6B6B]">③ 地域・卒業生との交流を深める企画</h3>
+                    <p class="mb-6">学校は地域と共にある。お世話になっている地域や、先輩たちと繋がる企画を考えよう。</p>
+                    <div class="chart-container">
+                        <canvas id="communityChart"></canvas>
+                    </div>
+                    <p class="text-center mt-2 text-gray-600">地域連携プロジェクトのインパクト。活動の輪を広げよう。</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4 text-[#FED766]">④ 記憶に残る映像・記念品企画</h3>
+                    <p class="mb-6">80周年を「形」として残そう。映像や記念品のデザインに、君のセンスを活かして！</p>
+                    <div class="chart-container">
+                        <canvas id="videoChart"></canvas>
+                    </div>
+                    <p class="text-center mt-2 text-gray-600">記念動画制作のタイムライン。計画的に進めるのが成功のコツ。</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg lg:col-span-2">
+                    <h3 class="text-2xl font-bold mb-4">その他のアイデア：タイムカプセル、歴史劇、ドローン空撮など</h3>
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex-1 space-y-4">
+                            <h4 class="font-bold text-lg">タイムラインで見る歴史劇制作</h4>
+                            <ol class="relative border-l border-gray-200">                  
+                                <li class="mb-10 ml-4">
+                                    <div class="absolute w-3 h-3 bg-gray-400 rounded-full mt-1.5 -left-1.5 border border-white"></div>
+                                    <h3 class="text-lg font-semibold">脚本作り</h3>
+                                    <p class="text-base font-normal text-gray-500">学校の歴史を調べて、感動の物語を創ろう。</p>
+                                </li>
+                                <li class="mb-10 ml-4">
+                                    <div class="absolute w-3 h-3 bg-gray-400 rounded-full mt-1.5 -left-1.5 border border-white"></div>
+                                    <h3 class="text-lg font-semibold">配役・練習</h3>
+                                    <p class="text-base font-normal text-gray-500">役になりきって、仲間と練習を重ねる。</p>
+                                </li>
+                                <li class="ml-4">
+                                    <div class="absolute w-3 h-3 bg-gray-400 rounded-full mt-1.5 -left-1.5 border border-white"></div>
+                                    <h3 class="text-lg font-semibold">本番</h3>
+                                    <p class="text-base font-normal text-gray-500">感動のステージを全校生徒、地域の人へ届ける。</p>
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="flex-1 space-y-4">
+                             <h4 class="font-bold text-lg">未来へ届け！タイムカプセル</h4>
+                             <p>未来の自分や後輩への手紙、思い出の品、今の流行などを詰めて、10年後の90周年に開封！中身を考えるだけでワクワクするね。</p>
+                             <div class="text-8xl text-center py-8 text-[#4ECDC4]">🕰️</div>
+                             <h4 class="font-bold text-lg">空から見よう！ドローン人文字</h4>
+                             <p>全校生徒で校庭に80周年の「80」や校章の人文字を作ってドローンで撮影！一生の思い出になること間違いなし。</p>
+                             <div class="text-8xl text-center py-8 text-[#FF6B6B]">🚁</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- New Section: Gemini API Integration - Idea Expander -->
+        <section id="gemini-idea-expander" class="mb-20 bg-[#FED766] bg-opacity-10 py-12 rounded-2xl">
+            <h2 class="text-3xl font-bold text-center mb-4">✨AIアイデア拡充アシスタント✨</h2>
+            <p class="text-center max-w-2xl mx-auto mb-10">君のアイデアをAIがさらに広げます！思いついたキーワードや短い文章を入力して、「アイデアを広げる」ボタンを押してみよう。</p>
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-2xl space-y-6">
+                <label for="ideaInput" class="block text-xl font-bold text-[#FF6B6B] mb-2">君のアイデアを入力！</label>
+                <textarea id="ideaInput" rows="6" class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#4ECDC4]" placeholder="例：タイムカプセルを埋める、卒業生を招いて座談会、生徒全員で歌を作る..."></textarea>
+                <button id="expandIdeaBtn" class="w-full bg-[#4ECDC4] text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg hover:bg-[#45B7D1] transition-colors flex items-center justify-center">
+                    ✨アイデアを広げる✨
+                </button>
+                <div id="loadingSpinnerExpander" class="loading-spinner"></div>
+                <div id="expandedIdeaOutput" class="mt-6 p-4 bg-gray-100 rounded-lg border border-gray-200 text-gray-700 whitespace-pre-wrap">
+                    AIが拡充したアイデアがここに表示されます。
+                </div>
+            </div>
+        </section>
+        <!-- End New Section -->
+
+        <section id="support" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-4">心配しないで！大人が全力でサポートします</h2>
+            <p class="text-center max-w-2xl mx-auto mb-10">「でも、企画を実現するのは大変そう…」大丈夫！皆さんが安心して挑戦できるよう、大人の実行委員会が「黒子」として、こんなサポートをします。</p>
+            <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="bg-[#4ECDC4] text-white p-6 rounded-lg shadow-md">
+                    <div class="text-4xl mb-2">💰</div>
+                    <p class="font-bold">予算の管理</p>
+                </div>
+                <div class="bg-[#FED766] text-white p-6 rounded-lg shadow-md">
+                    <div class="text-4xl mb-2">🏢</div>
+                    <p class="font-bold">場所の確保</p>
+                </div>
+                <div class="bg-[#FF6B6B] text-white p-6 rounded-lg shadow-md">
+                    <div class="text-4xl mb-2">🛡️</div>
+                    <p class="font-bold">安全の管理</p>
+                </div>
+                <div class="bg-[#45B7D1] text-white p-6 rounded-lg shadow-md">
+                    <div class="text-4xl mb-2">📞</div>
+                    <p class="font-bold">外部との連絡</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="schedule" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-4">これからのスケジュール</h2>
+            <p class="text-center max-w-2xl mx-auto mb-10">式典までは1年以上！じっくり時間をかけて、最高の式典を創り上げよう。</p>
+            <div class="max-w-2xl mx-auto">
+                <ol class="relative border-l-4 border-[#4ECDC4]">                  
+                    <li class="mb-12 ml-8">
+                        <div class="absolute w-6 h-6 bg-[#FED766] rounded-full mt-1.5 -left-[14px] border-4 border-white"></div>
+                        <time class="mb-1 text-sm font-normal leading-none text-gray-500">現在 〜 2025年11月頃</time>
+                        <h3 class="text-2xl font-semibold text-[#3A3A3A]">フェーズ1：企画立案・募集</h3>
+                        <p class="text-base font-normal text-gray-600">アイデア出しワークショップを開催！皆さんのユニークな企画を大募集する期間です。</p>
+                    </li>
+                    <li class="mb-12 ml-8">
+                        <div class="absolute w-6 h-6 bg-[#FED766] rounded-full mt-1.5 -left-[14px] border-4 border-white"></div>
+                        <time class="mb-1 text-sm font-normal leading-none text-gray-500">2025年12月頃 〜 2026年6月頃</time>
+                        <h3 class="text-2xl font-semibold text-[#3A3A3A]">フェーズ2：企画具体化・準備</h3>
+                        <p class="text-base font-normal text-gray-600">選ばれた企画を、具体的に形にしていく準備期間。リハーサルや制作を本格化します。</p>
+                    </li>
+                    <li class="ml-8">
+                        <div class="absolute w-6 h-6 bg-[#FED766] rounded-full mt-1.5 -left-[14px] border-4 border-white"></div>
+                        <time class="mb-1 text-sm font-normal leading-none text-gray-500">2026年9月 or 10月</time>
+                        <h3 class="text-2xl font-semibold text-[#3A3A3A]">フェーズ3：式典本番！</h3>
+                        <p class="text-base font-normal text-gray-600">いよいよ本番！みんなで創り上げた最高の式典で、感動を分かち合おう。</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center py-12 px-4">
+        <h2 class="text-3xl font-bold mb-4">さあ、君のアイデアを提案しよう！</h2>
+        <p class="max-w-xl mx-auto mb-8">皆さんのアイデアが、学校の新しい歴史の1ページになります。どんな小さなことでも構いません。皆さんの「やってみたい」という気持ちが、最高の式典を創る第一歩です。</p>
+        <div class="inline-block bg-[#FF6B6B] text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg">
+            提案は生徒会室前の提案BOXへ！
+        </div>
+    </footer>
+
+    <script>
+        const wrapLabel = (label, maxLength = 16) => {
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine += ' ' + word;
+                }
+            });
+            lines.push(currentLine.trim());
+            return lines.map(l => l.trim());
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: {
+                            size: 14,
+                            family: "'M PLUS Rounded 1c', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    titleFont: {
+                        size: 16,
+                        family: "'M PLUS Rounded 1c', sans-serif"
+                    },
+                    bodyFont: {
+                        size: 14,
+                        family: "'M PLUS Rounded 1c', sans-serif"
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        font: { size: 12 }
+                    }
+                },
+                x: {
+                    ticks: {
+                        font: { size: 12 }
+                    }
+                }
+            }
+        };
+
+        const PALETTE = {
+            red: '#FF6B6B',
+            turquoise: '#4ECDC4',
+            blue: '#45B7D1',
+            yellow: '#FED766',
+        };
+
+        const muralCtx = document.getElementById('muralChart').getContext('2d');
+        new Chart(muralCtx, {
+            type: 'bar',
+            data: {
+                labels: ['デザイン考案', '共同制作', '完成お披露目'],
+                datasets: [{
+                    label: '活動にかける熱量(%)',
+                    data: [25, 60, 15],
+                    backgroundColor: [PALETTE.yellow, PALETTE.red, PALETTE.turquoise],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: { ...commonChartOptions, indexAxis: 'y' }
+        });
+
+        const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+        new Chart(performanceCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['合唱・吹奏楽', 'ダンス', '演劇', 'バンド演奏', 'その他'],
+                datasets: [{
+                    label: 'パフォーマンス種類',
+                    data: [40, 25, 15, 10, 10],
+                    backgroundColor: [PALETTE.red, PALETTE.turquoise, PALETTE.yellow, PALETTE.blue, '#CCCCCC'],
+                    hoverOffset: 4
+                }]
+            },
+            options: commonChartOptions
+        });
+
+        const communityCtx = document.getElementById('communityChart').getContext('2d');
+        new Chart(communityCtx, {
+            type: 'bubble',
+            data: {
+                datasets: [{
+                    label: '地域清掃・美化活動',
+                    data: [{x: 20, y: 30, r: 25}],
+                    backgroundColor: PALETTE.turquoise
+                }, {
+                    label: '地域のお祭り参加',
+                    data: [{x: 40, y: 60, r: 35}],
+                    backgroundColor: PALETTE.red
+                }, {
+                    label: '地場産品で商品開発',
+                    data: [{x: 70, y: 40, r: 20}],
+                    backgroundColor: PALETTE.yellow
+                }, {
+                    label: '卒業生へのインタビュー',
+                    data: [{x: 55, y: 15, r: 15}],
+                    backgroundColor: PALETTE.blue
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                scales: {
+                    y: { beginAtZero: true, grace: '10%' },
+                    x: { beginAtZero: true, grace: '10%' }
+                },
+                plugins: {
+                    ...commonChartOptions.plugins,
+                    tooltip: {
+                         callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += `(貢献度: ${context.parsed.x}, 参加人数: ${context.parsed.y}, 楽しさ: ${context.raw.r})`;
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const videoCtx = document.getElementById('videoChart').getContext('2d');
+        new Chart(videoCtx, {
+            type: 'line',
+            data: {
+                labels: ['企画・構成', '撮影', '編集', '試写会', '完成'],
+                datasets: [{
+                    label: '作業の大変さレベル',
+                    data: [3, 7, 10, 5, 2],
+                    fill: true,
+                    backgroundColor: 'rgba(254, 215, 102, 0.3)',
+                    borderColor: PALETTE.yellow,
+                    tension: 0.3,
+                    pointBackgroundColor: PALETTE.yellow,
+                    pointRadius: 5
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 12
+                    }
+                }
+            }
+        });
+
+        // Gemini API Integration Logic - Idea Expander
+        const ideaInput = document.getElementById('ideaInput');
+        const expandIdeaBtn = document.getElementById('expandIdeaBtn');
+        const loadingSpinnerExpander = document.getElementById('loadingSpinnerExpander');
+        const expandedIdeaOutput = document.getElementById('expandedIdeaOutput');
+
+        expandIdeaBtn.addEventListener('click', async () => {
+            const prompt = ideaInput.value.trim();
+            if (!prompt) {
+                expandedIdeaOutput.textContent = 'アイデアを入力してください。';
+                return;
+            }
+
+            loadingSpinnerExpander.style.display = 'block'; // Show spinner
+            expandedIdeaOutput.textContent = ''; // Clear previous output
+
+            try {
+                const chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: `あなたは中学校の周年行事の企画アシスタントです。生徒が以下のアイデアを考えています。このアイデアを周年行事の式典企画として、もっと具体的に、魅力的に、そして実現可能にするための具体的なヒントや多角的な視点を提供してください。80周年という節目にふさわしい、歴史や地域とのつながりも意識した提案を含めてください。
+生徒のアイデア: ${prompt}` }] });
+
+                const payload = { contents: chatHistory };
+                const apiKey = ""; 
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    expandedIdeaOutput.textContent = text;
+                } else {
+                    expandedIdeaOutput.textContent = 'アイデアの生成に失敗しました。もう一度お試しください。';
+                }
+            } catch (error) {
+                console.error('Error calling Gemini API:', error);
+                expandedIdeaOutput.textContent = 'アイデアの生成中にエラーが発生しました。ネットワーク接続を確認し、もう一度お試しください。';
+            } finally {
+                loadingSpinnerExpander.style.display = 'none'; // Hide spinner
+            }
+        });
+    </script>
+</body>
+</html>
